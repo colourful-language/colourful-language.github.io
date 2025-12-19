@@ -1,0 +1,133 @@
+.App {
+  text-align: center;
+  position: relative;
+}
+
+.App::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5vh;
+  background: url('./logo.svg') repeat-x;
+  background-size: 5vh 5vh;
+  z-index: 1000;
+}
+
+.App::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 5vh;
+  background: url('./logo.svg') repeat-y;
+  background-size: 5vh 5vh;
+  z-index: 1000;
+}
+
+/* Right border */
+.App-header::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 5vh;
+  background: url('./logo.svg') repeat-y;
+  background-size: 5vh 5vh;
+  z-index: 1000;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.App-header {
+  background-color: #002642;
+  min-height: 20vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+.App-link {
+  color: #e59500;
+}
+
+.rainbow-text {
+  font-size: clamp(1.5rem, 3vw, 3rem);
+  font-weight: bold;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0 10vh;
+  max-width: 100%;
+  overflow-wrap: break-word;
+}
+
+@media (max-width: 768px) {
+  .rainbow-text {
+    font-size: clamp(1.2rem, 4vw, 2.5rem);
+    padding: 0 7vh;
+  }
+}
+
+@media (max-width: 480px) {
+  .rainbow-text {
+    font-size: clamp(1rem, 5vw, 2rem);
+    padding: 0 6vh;
+  }
+}
+
+.rainbow-text span {
+  transition: all 0.3s ease;
+  text-shadow: 
+    -2px -2px 0 #840032,
+    2px -2px 0 #840032,
+    -2px 2px 0 #840032,
+    2px 2px 0 #840032,
+    -1px 0 0 #840032,
+    1px 0 0 #840032,
+    0 -1px 0 #840032,
+    0 1px 0 #840032;
+}
+
+.rainbow-text span:hover {
+  transform: scale(1.2);
+}
+
+.content {
+  height: 70vh;
+  background-color: #e59500;
+}
+
+.footer {
+  height: 10vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background-color: #002642;
+  color: white;
+}
+
+.footer a {
+  color: #e59500;
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
