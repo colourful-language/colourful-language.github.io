@@ -1,0 +1,272 @@
+.word-card {
+  background: url('../blob.svg') no-repeat center center;
+  background-size: 100% 100%;
+  border: none;
+  min-width: 300px;
+  min-height: 300px;
+  max-width: 500px;
+  max-height: 500px;
+  width: 500px;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  box-shadow: none;
+  position: relative;
+  perspective: 1000px;
+}
+
+/* Organic blob shape variations */
+.word-card:nth-child(6n+1) {
+  border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+}
+
+.word-card:nth-child(6n+2) {
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+}
+
+.word-card:nth-child(6n+3) {
+  border-radius: 70% 30% 50% 50% / 30% 50% 70% 50%;
+}
+
+.word-card:nth-child(6n+4) {
+  border-radius: 40% 60% 70% 30% / 50% 60% 30% 60%;
+}
+
+.word-card:nth-child(6n+5) {
+  border-radius: 50% 50% 30% 70% / 70% 50% 50% 30%;
+}
+
+.word-card:nth-child(6n) {
+  border-radius: 40% 60% 60% 40% / 60% 40% 60% 40%;
+}
+
+.word-card-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  max-width: 50%;
+  padding: 6rem 4rem;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.word-card.flipped .word-card-inner {
+  transform: rotateY(180deg);
+}
+
+.word-card:hover .word-card-inner {
+  transform: rotateY(180deg);
+}
+
+.word-card-front,
+.word-card-back {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.word-card-back {
+  transform: rotateY(180deg);
+}
+
+.word-card.flipped {
+  transform: translateY(-5px) scale(1.05);
+  background: #002642;
+  color: #fff;
+  border: 2px solid #e59500;
+  border-radius: 50%;
+}
+
+.word-card:hover {
+  transform: translateY(-5px) scale(1.05);
+  background: #002642;
+  color: #fff;
+  border: 2px solid #e59500;
+  border-radius: 50%;
+}
+
+/* All flipped and hover states become perfect circles */
+.word-card:nth-child(6n+1).flipped,
+.word-card:nth-child(6n+2).flipped,
+.word-card:nth-child(6n+3).flipped,
+.word-card:nth-child(6n+4).flipped,
+.word-card:nth-child(6n+5).flipped,
+.word-card:nth-child(6n).flipped,
+.word-card:nth-child(6n+1):hover,
+.word-card:nth-child(6n+2):hover,
+.word-card:nth-child(6n+3):hover,
+.word-card:nth-child(6n+4):hover,
+.word-card:nth-child(6n+5):hover,
+.word-card:nth-child(6n):hover {
+  border-radius: 50%;
+}
+
+.word-card .word {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #e59500;
+  text-align: center;
+  word-wrap: break-word;
+  line-height: 1.3;
+  max-width: 500px;
+  hyphens: auto;
+}
+
+.word-card .insult-og {
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-align: center;
+  line-height: 1.3;
+  margin-bottom: 0.3rem;
+}
+
+.word-card-front .insult-og {
+  color: #002642;
+}
+
+.word-card-back .insult-og {
+  color: #e59500;
+}
+
+.word-card .pronounciation {
+  font-size: 1.1rem;
+  color: #e59500;
+  text-align: center;
+  font-style: italic;
+  margin-bottom: 0.5rem;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  max-width: 100%;
+}
+
+.word-card .accent {
+  font-size: 0.85rem;
+  color: #e59500;
+  text-align: center;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  font-style: italic;
+}
+
+.word-card .literal-meaning {
+  font-size: 1.1rem;
+  color: #e59500;
+  text-align: center;
+  line-height: 1.2;
+  opacity: 0.9;
+  max-width: 500px;
+}
+
+.word-card .actual-meaning {
+  font-size: 1.1rem;
+  color: #e59500;
+  text-align: center;
+  font-weight: 500;
+  line-height: 1.2;
+  margin-top: 0.3rem;
+  max-width: 500px;
+}
+
+.word-card .country {
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-align: center;
+  font-style: italic;
+  opacity: 0.9;
+  margin-top: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.word-card-front .country {
+  color: #002642;
+}
+
+.card-field {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.field-label {
+  font-size: 0.7rem;
+  color: #e59500;
+  text-align: center;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.8;
+}
+
+.field-value {
+  font-size: 0.9rem;
+  color: #e59500;
+  text-align: center;
+  line-height: 1.2;
+  font-weight: 500;
+  word-wrap: break-word;
+}
+
+@media (max-width: 768px) {
+  .word-card {
+    min-width: 150px;
+    min-height: 150px;
+    max-width: 400px;
+    padding: 1.5rem 2rem;
+  }
+  
+  .word-card .insult-og,
+  .word-card .pronounciation,
+  .word-card .literal-meaning,
+  .word-card .actual-meaning {
+    font-size: 0.9rem;
+    max-width: 300px;
+  }
+  
+  .word-card .accent,
+  .word-card .country {
+    font-size: 0.7rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .word-card {
+    min-width: 120px;
+    min-height: 120px;
+    max-width: 300px;
+    padding: 1.2rem 1.5rem;
+  }
+  
+  .word-card .insult-og,
+  .word-card .pronounciation,
+  .word-card .literal-meaning,
+  .word-card .actual-meaning {
+    font-size: 0.75rem;
+    max-width: 200px;
+  }
+  
+  .word-card .accent,
+  .word-card .country {
+    font-size: 0.6rem;
+  }
+}

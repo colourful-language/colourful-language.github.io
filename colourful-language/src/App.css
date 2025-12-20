@@ -1,6 +1,10 @@
 .App {
   text-align: center;
   position: relative;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .App::before {
@@ -10,7 +14,7 @@
   left: 0;
   right: 0;
   height: 5vh;
-  background: url('./logo.svg') repeat-x;
+  background: url('./logo-black.svg') repeat-x;
   background-size: 5vh 5vh;
   z-index: 1000;
 }
@@ -22,7 +26,7 @@
   left: 0;
   bottom: 0;
   width: 5vh;
-  background: url('./logo.svg') repeat-y;
+  background: url('./logo-black.svg') repeat-y;
   background-size: 5vh 5vh;
   z-index: 1000;
 }
@@ -35,7 +39,7 @@
   right: 0;
   bottom: 0;
   width: 5vh;
-  background: url('./logo.svg') repeat-y;
+  background: url('./logo-black.svg') repeat-y;
   background-size: 5vh 5vh;
   z-index: 1000;
 }
@@ -46,12 +50,14 @@
 }
 
 .App-header {
-  background-color: #002642;
-  min-height: 20vh;
+  background-color: #000;
+  padding: calc(5vh + 1rem) 8vh 2rem 8vh;
+  flex-shrink: 0;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  gap: 2rem;
   font-size: calc(10px + 2vmin);
   color: white;
   position: sticky;
@@ -59,71 +65,255 @@
   z-index: 999;
 }
 
-.App-link {
-  color: #e59500;
-}
-
-.rainbow-text {
-  font-size: clamp(1.5rem, 3vw, 3rem);
-  font-weight: bold;
-  letter-spacing: 0.05em;
-  display: flex;
-  align-items: baseline;
-  flex-wrap: wrap;
-  justify-content: center;
-  padding: 0 10vh;
-  max-width: 100%;
-  overflow-wrap: break-word;
+.filter-wrapper {
+  flex: 1;
+  margin-left: auto;
+  margin-top: 1vh;
+  max-width: 60%;
 }
 
 @media (max-width: 768px) {
-  .rainbow-text {
-    font-size: clamp(1.2rem, 4vw, 2.5rem);
-    padding: 0 7vh;
+  .App-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+    padding: calc(5vh + 1rem) 6vh 1.5rem 6vh;
+  }
+  
+  .filter-wrapper {
+    margin-left: 0;
+    margin-top: 0;
+    max-width: 90%;
+  }
+  
+  .app-title {
+    justify-content: center;
   }
 }
 
 @media (max-width: 480px) {
-  .rainbow-text {
-    font-size: clamp(1rem, 5vw, 2rem);
-    padding: 0 6vh;
+  .App-header {
+    padding: calc(5vh + 0.5rem) 6vh 1rem 6vh;
+    gap: 0.75rem;
+  }
+  
+  .app-title {
+    white-space: normal;
+    text-align: center;
   }
 }
 
-.rainbow-text span {
-  transition: all 0.3s ease;
-  text-shadow: 
-    -2px -2px 0 #840032,
-    2px -2px 0 #840032,
-    -2px 2px 0 #840032,
-    2px 2px 0 #840032,
-    -1px 0 0 #840032,
-    1px 0 0 #840032,
-    0 -1px 0 #840032,
-    0 1px 0 #840032;
+.App-link {
+  color: #e59500;
 }
 
-.rainbow-text span:hover {
-  transform: scale(1.2);
+.app-title {
+  font-size: clamp(1.2rem, 2vw, 2rem);
+  font-weight: bold;
+  letter-spacing: 0.05em;
+  color: #840032;
+  margin: 0;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
 }
 
+.title-logo {
+  height: 2em;
+  width: auto;
+}
+
+.disclaimer {
+  background-color: #000;
+  color: #c6c6c6;
+  padding: 0 5rem 0.5rem 5rem;
+  font-size: 0.9rem;
+}
 .content {
-  height: 70vh;
-  background-color: #e59500;
+  flex: 1;
+  background-color: #000;
+  padding: 3rem 5vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  overflow-y: auto;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  position: relative;
+  cursor: grab;
+  user-select: none;
+}
+
+.scroll-indicator {
+  position: fixed;
+  right: 10vw;
+  z-index: 1002;
+  background-color: transparent;
+  color: #840032;
+  padding: 0;
+  border-radius: 0;
+  font-size: 3rem;
+  box-shadow: none;
+  animation: bounce 2s infinite;
+  pointer-events: auto;
+  cursor: pointer;
+  width: auto;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 100;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.scroll-indicator:hover {
+  transform: scale(1.2);
+  color: #e59500;
+}
+
+.scroll-indicator:active {
+  transform: scale(0.95);
+}
+
+.scroll-indicator-up {
+  top: calc(20vh + 1rem);
+}
+
+.scroll-indicator-down {
+  bottom: calc(5vh + 1rem);
+}
+
+.scroll-indicator-left {
+  left: 10vw;
+  right: auto;
+  top: 50%;
+  transform: translateY(-50%);
+  animation: bounceHorizontal 2s infinite;
+}
+
+.scroll-indicator-right {
+  right: 10vw;
+  top: 50%;
+  transform: translateY(-50%);
+  animation: bounceHorizontal 2s infinite;
+}
+
+@keyframes bounceHorizontal {
+  0%, 100% {
+    transform: translateY(-50%) translateX(0);
+  }
+  50% {
+    transform: translateY(-50%) translateX(5px);
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@media (max-width: 768px) {
+  .scroll-indicator {
+    width: auto;
+    height: auto;
+    font-size: 2rem;
+  }
+}
+
+.content::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none;
+}
+
+.content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.content::-webkit-scrollbar-thumb {
+  background: transparent;
+}
+
+.content::-webkit-scrollbar-thumb:hover {
+  background: transparent;
+}
+
+/* Hide scrollbar for Firefox */
+.content {
+  scrollbar-width: none;
+}
+
+/* Hide scrollbar for IE and Edge */
+.content {
+  -ms-overflow-style: none;
+}
+
+.words-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 520px);
+  gap: 1rem;
+  justify-content: center;
+  align-items: start;
+  padding: 2rem;
+  max-width: calc(9 * 520px + 8 * 1rem + 2rem);
+}
+
+@media (max-width: 768px) {
+  .content {
+    padding: 2rem 1rem;
+  }
+  
+  .words-container {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+    padding: 1rem;
+  }
+  
+  .word-card {
+    width: 280px !important;
+    height: 280px !important;
+    min-width: 280px !important;
+    min-height: 280px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .content {
+    padding: 1.5rem 0.5rem;
+  }
+  
+  .words-container {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+    padding: 0.5rem;
+  }
+  
+  .word-card {
+    width: 250px !important;
+    height: 250px !important;
+    min-width: 250px !important;
+    min-height: 250px !important;
+  }
 }
 
 .footer {
-  height: 10vh;
+  height: 2vh;
+  flex-shrink: 0;
+  padding: 2vh 10vw;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
-  background-color: #002642;
-  color: white;
+  background-color: #000;
+  color: #e59500;
 }
 
 .footer a {
-  color: #e59500;
+  color: #840032;
   text-decoration: none;
   margin: 0 10px;
 }

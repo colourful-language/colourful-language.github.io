@@ -1,4 +1,4 @@
-# 🎨 Colourful Language
+# Colourful Language
 
 Explore what makes our languages fun!
 
