@@ -287,9 +287,7 @@ function App() {
                 </div>
               )}
             </div>
-            <footer className="footer">Made with ❤️ by
-                <a href="https://github.com/Milindi-Kodikara" target="_blank">Milindi Kodikara</a> : : <a
-                    href="https://ko-fi.com/milindi" target="_blank"> Shout me a tea</a>  🍃
+            <footer className="footer">Made with 🔥 in Melbourne 🍁
             </footer>
         </div>
     )
